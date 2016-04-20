@@ -10,5 +10,9 @@
  */
 public class Competences {
     /* Pour tester le transfert dans GitHub */
+    String libelle ;
     
+    public String getLibelle(){
+        return this.libelle ;
+    }
 }
