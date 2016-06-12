@@ -1,5 +1,7 @@
 package GestionOffres;
 
+import java.util.ArrayList;
+
 /*
  *  Projet Dev Objet Master 2 IGSI-FC
  *  Nicolas Méjane / Gaëtan Bascoulès
@@ -45,16 +47,56 @@ public class Emploi extends Offre {
     public float getSalaireMax() {
         return salaireMax;
     }
+
+    public void rechercheStage(String inRegion, ArrayList<String> inListeCompetence){
+        System.out.println("Pas un Stage !");
+    }
     
+    @Override
+    public float scoreSalaire(float inSalaireMin, ArrayList<Emploi> inListeEmplois){
+        System.out.println("==========================");
+        System.out.println("CALCUL du Score du salaire");
+        
+        float score = 0 ;
+        float salaireMaxTrouve = 0 ;
+        
+        // Recherche du salaire maxi dans la liste des offres d'emploi
+        for (int i=0;i<inListeEmplois.size();i++){
+            if(inListeEmplois.get(i).getSalaireMax() > salaireMaxTrouve){
+                salaireMaxTrouve = inListeEmplois.get(i).getSalaireMax() ;
+            }
+        }
+        System.out.println("Salaire maxi du tableau (attendu = 20000) : " + salaireMaxTrouve );
+        System.out.println("Salaire min comparé (attendu = 35000) : " + inSalaireMin);
+        
+        if(inSalaireMin > salaireMaxTrouve){
+            score = 5-((inSalaireMin - salaireMaxTrouve)/1000) ; }
+        else {
+            score = 5 ; }
+        
+        System.out.println("Score calculé : " + score);
+        
+        /* SI inSalaireMin > Max
+         * ALORS score = 5-(inSalaireMin - Max du salaire des offres) / 1000
+         * SINON score = 5
+        */
+        System.out.println("CALCUL du Score du salaire");
+        System.out.println("==========================");
+        
+        return score ;
+    }
+
+ 
     
 /**
  * 
      * @return 
  * @todo : Travailler les overrides
  */    
-
-    @Override
+   @Override
     public String toString() {
-        return super.toString();
+        return super.toString() + " // Spé Emploi : " + "experience=" + experience + ", salaireMin=" + salaireMin + ", salaireMax=" + salaireMax + '}';
     }
+
+
 }

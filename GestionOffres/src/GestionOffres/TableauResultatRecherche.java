@@ -1,7 +1,7 @@
 package GestionOffres;
 
-
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Objects;
 
 /*
@@ -14,28 +14,35 @@ import java.util.Objects;
  *
  * @author gaetan
  */
-public class TableauResultatRecherche {
-    private HashMap<Offre,Double> rezRecherche ;
+public class TableauResultatRecherche{
+    private ArrayList<Offre> rezRecherche ;
     
     public TableauResultatRecherche(){
-            this.rezRecherche = new HashMap<>() ;
-        }
+            this.rezRecherche = new ArrayList<>();
+    }
     
-    public void ajouteResultat(Stage inStage, Double inScore){
-            if (inScore > 0.0){
-                this.rezRecherche.put(inStage, inScore) ;
+    public void ajouteResultat(Stage inStage, float inScore){
+            if (inScore > 0){
+                inStage.setScore(inScore);
+                this.rezRecherche.add(inStage) ;
             }
     }
-    public void ajouteResultat(Emploi inEmploi, Double inScore){
+    public void ajouteResultat(Emploi inEmploi, float inScore){
             if (inScore > 0.0){
-                this.rezRecherche.put(inEmploi, inScore) ;
+                inEmploi.setScore(inScore);
+                this.rezRecherche.add(inEmploi) ;
             }
     }
-    public HashMap<Offre,Double> afficheResultatRecherche() {
+    public ArrayList<Offre> afficheResultatRecherche() {
         System.out.println("Nb trouvé : " + this.rezRecherche.size());
-        return this.rezRecherche;
-    } 
-
+        
+        /* Tri de la recherche par score du plus grand (en haut de liste)
+           au plus petit (en bas de liste) */
+        Collections.sort(rezRecherche,Collections.reverseOrder());
+        
+        return this.rezRecherche;    
+    }
+        
     @Override
     public String toString() {
         return "TableauResultatRecherche{" + "rezRecherche=" + rezRecherche + '}';

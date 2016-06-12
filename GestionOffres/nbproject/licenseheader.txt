@@ -1,0 +1,9 @@
+<#if licenseFirst??>
+${licenseFirst}
+</#if>
+${licensePrefix} Projet Dev Objet Master 2 IGSI-FC
+${licensePrefix} Nicolas Méjane / Gaëtan Bascoulès
+${licensePrefix}       --> GestionOffres <--
+<#if licenseLast??>
+${licenseLast}
+</#if>
