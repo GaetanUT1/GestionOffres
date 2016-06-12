@@ -25,7 +25,7 @@ public class Test1 {
     public static void main(String[] args) {
                 
         ArrayList<Offre> listeOffreSaisies = new ArrayList<>() ;
-        String regionRecherchee ="" ;
+        String regionRecherchee ;
         ArrayList<String> listeCompetenceRecherchees = new ArrayList<>() ;
         
 

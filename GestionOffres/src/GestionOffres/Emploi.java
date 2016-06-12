@@ -9,11 +9,15 @@ import java.util.ArrayList;
  */
 
 /**
- *
+ * Classe fille de la super classe Offre
+ * Elle représente un Emploi.
+ * Spécificités : 
+ * - la notion d'expérience (en années)
+ * - les notions de salaire (min et max)
  * @author gaetan
  */
 public class Emploi extends Offre {
-    private int experience;
+    private final int experience;
     private float salaireMin = 0 ;
     private float salaireMax = 0 ; 
     
@@ -36,28 +40,59 @@ public class Emploi extends Offre {
         this.salaireMax = inSalaireMax ;
     }
     
+    /**
+     * Pour récupérer les années d'expériences requises pour l'Emploi
+     * @return un integer donnant le nombre d'années d'expérience de l'Emploi
+     */
     public int getExperience() {
         return this.experience;
     }
 
+    /**
+     * Pour récupérer le salaire minimum offert par l'Emploi
+     * @return float salaire minimum
+     */
     public float getSalaireMin() {
         return salaireMin;
     }
 
+    /**
+     * Pour récupérer le salaire maximum offert par l'Emploi
+     * @return float salaire maximum
+     */
     public float getSalaireMax() {
         return salaireMax;
     }
 
+    /**
+     * Sert à calculer le score d'un stage, mais tant qu'on n'est pas passé
+     * par cette méthode on ne sait pas si l'Offre est un Stage ou un Emploi.
+     * @param inRegion
+     * @param inListeCompetence
+     */
     public void rechercheStage(String inRegion, ArrayList<String> inListeCompetence){
         System.out.println("Pas un Stage !");
     }
     
+    /**
+     * Spécifique à Emploi : la notion de salaire
+     * Méthode servant à attribuer un score sur la notion de salaire
+     * Algo :
+     * Recherche du salaire maxi dans la liste des offres d'emploi
+     * SI le salaire en entrée > salaire maxi trouvé
+     *  ALORS score = 5-(inSalaireMin - Max du salaire des offres) / 1000
+     *  SINON score = 5
+     * FINSI
+     * @param inSalaireMin est le salaire en entrée
+     * @param inListeEmplois est la liste des Emplois sélectionnés pour comparer
+     * @return
+     */
     @Override
     public float scoreSalaire(float inSalaireMin, ArrayList<Emploi> inListeEmplois){
         System.out.println("==========================");
         System.out.println("CALCUL du Score du salaire");
         
-        float score = 0 ;
+        float score ;
         float salaireMaxTrouve = 0 ;
         
         // Recherche du salaire maxi dans la liste des offres d'emploi

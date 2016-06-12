@@ -11,28 +11,48 @@ import java.util.Objects;
  */
 
 /**
- *
+ * Classe contenant les offres résultants de la recherche
  * @author gaetan
  */
 public class TableauResultatRecherche{
     private ArrayList<Offre> rezRecherche ;
     
+    /**
+     * Constructeur de la structure d'accueil des offres sélectionnées
+     * pour l'affichage
+     */
     public TableauResultatRecherche(){
             this.rezRecherche = new ArrayList<>();
     }
     
+    /**
+     * Concernant le stage : Ajoute stage et score passés en paramètres
+     * @param inStage
+     * @param inScore
+     */
     public void ajouteResultat(Stage inStage, float inScore){
             if (inScore > 0){
                 inStage.setScore(inScore);
                 this.rezRecherche.add(inStage) ;
             }
     }
+     /**
+     * Concernant l'emploi : Ajoute stage et score passés en paramètres
+     * @param inEmploi 
+     * @param inScore
+     */
     public void ajouteResultat(Emploi inEmploi, float inScore){
             if (inScore > 0.0){
                 inEmploi.setScore(inScore);
                 this.rezRecherche.add(inEmploi) ;
             }
     }
+    
+    /**
+     * Affiche le résultat de la recherche
+     * Le résultat est trié par ordre décroissant
+     * @return ArrayList\<Offre\>
+     */
     public ArrayList<Offre> afficheResultatRecherche() {
         System.out.println("Nb trouvé : " + this.rezRecherche.size());
         
